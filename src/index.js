@@ -1,17 +1,37 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
-import App from './App';
-import reportWebVitals from './reportWebVitals';
+import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom';
+import MainTemplate from './Templates/MainTemplate';
+import Header from './Components/Header';
+import CyberBoard from './Pages/CyberBoard/CyberBoard';
+import ProjectManager from './Pages/ProjectManagement/ProjectManager';
+import CreateProject from './Pages/CreateProject/CreateProject';
+import Releases from './Pages/Releases/Releases';
+import IssuesFilters from './Pages/IssuesFilters/IssuesFilters';
+import Pages from './Pages/Pages/Pages';
+import Reports from './Pages/Reports/Reports';
+import Components from './Pages/Components/Components';
+
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>
+  <BrowserRouter>
+    <Routes>
+      <Route path='' element={<MainTemplate />}>
+        <Route index element={<CyberBoard/>}></Route>
+        <Route path='/project-management' element={<ProjectManager/>}></Route>
+        <Route path='/create-project' element={<CreateProject/>}></Route>
+        <Route path='/releases' element={<Releases/>}></Route>
+        <Route path='/issues-and-filters' element={<IssuesFilters/>}></Route>
+        <Route path='/pages' element={<Pages/>}></Route>
+        <Route path='/reports' element={<Reports/>}></Route>
+        <Route path='/component' element={<Components/>}></Route>
+      </Route>
+    <Route path="*" element={<Navigate to="/" />} />
+
+    </Routes>
+
+  </BrowserRouter>
 );
 
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
-reportWebVitals();
